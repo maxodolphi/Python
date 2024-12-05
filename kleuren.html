@@ -1,0 +1,8 @@
+<script>
+    colers=["red","green","blue","yellow","purple","orange", "lightgreen", "lightblue","silver"];
+    var timer=window.setInterval(changeColour, 1000);
+    function changeColour() {
+    var n=Math.round(Math.random()*colers.length)
+    document.body.style.backgroundColor=colers[n];
+    }
+    </script>

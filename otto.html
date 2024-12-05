@@ -1,0 +1,38 @@
+<html>
+    <body style="background-color:white">
+        <img id="otto" style="position: absolute; transition: all 0.5s;" src="alien.png" width="200" onmousedown="gevangen()">
+        <p id="scoretekst">score: 0</p>
+    </body>
+<script>
+    var score=0;
+    var seconds=0;
+    var timer=window.setInterval(beweeg,1000);
+
+    function beweeg(){
+        seconds++;
+
+        var left = Math.random()*screen.width - 200
+        var top = Math.random()*screen.height - 150
+
+        document.getElementById("otto").style.left=left > 0 ? left : 0 +"px";
+        document.getElementById("otto").style.top=top > 0 ? top : 0 +"px";
+        if(seconds>30){
+            clearInterval(timer);
+            alert("jouw score:"+ score);
+            location.reload();
+        }
+    }
+     function gevangen(){
+        score++;
+        document.getElementById("scoretekst").innerText="score:"+score;
+     }
+</script>
+<script>
+    colers=["red","green","blue","yellow","purple","orange", "lightgreen", "lightblue","silver"];
+    var timer=window.setInterval(changeColour, 1000);
+    function changeColour() {
+    var n=Math.round(Math.random()*colers.length)
+    document.body.style.backgroundColor=colers[n];
+    }
+    </script>
+</html>
