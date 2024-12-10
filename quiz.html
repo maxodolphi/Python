@@ -1,37 +1,15 @@
 <script>
-    answer=prompt("wat is 28x5");
-    if(answer==140) {
-        alert("corect!")
-    }
-else{
-    alert("fout")
-}
+    function vraag(zin, antwoord) {
+        var answer = prompt(zin);
+        if(answer==antwoord) {
+            alert("corect!")
+        } else {
+            alert("fout")
+        }
+    }    
+    vraag('wat is 28x5', 28*5);
     
-answer=prompt("wat is wortel 81")
-    if(answer==9){
-        alert("corect!")
-    }
-    else{
-        alert("fout")
-    }
-    ansewr=prompt("wat is 278:2")
-    if(ansewr==139){
-    alert("corect")
-}
-if(ansewr<139){
-alert("fout")
-}
-if(ansewr>139){
-    alert("fout")
-}
-ansewr=prompt("wat is 7 x 13")
-if(ansewr<91){
-alert("fout")
-}
-if(ansewr>91){
-alert("fout")
-}
-if(ansewr==91){
-alert("goed")
-}
+vraag('wat is wortel 81',Math.sqrt(81) )
+vraag('wat is 278:2',278/2)
+vraag('wat is 7x13',7*13)
 </script>
