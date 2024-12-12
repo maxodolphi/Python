@@ -1,5 +1,5 @@
 <html>
-    <body style="background-color:white">
+    <body style="background-color:cyan">
         <img id="otto" style="position: absolute; transition: all 0.5s;" src="alien.png" width="200" onmousedown="gevangen()">
         <p id="scoretekst">score: 0</p>
     </body>
@@ -28,7 +28,8 @@
      }
 </script>
 <script>
-    colers=["red","green","blue","yellow","purple","orange", "lightgreen", "lightblue","silver","aquamarine","greenyellow","powderblue"];
+    
+        colers=["red","green","blue","yellow","purple","orange","lightgreen", "lightblue","silver","aquamarine","greenyellow","powderblue"];
     var timer=window.setInterval(changeColour, 1000);
     function changeColour() {
     var n=Math.round(Math.random()*colers.length)
