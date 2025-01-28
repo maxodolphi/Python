@@ -1,49 +1,110 @@
 <html>
-<body style="background-color:lack;">
+<body style="background-color:black;">
     <div id="mazeHolder"style>="position:absolute;top:0;left:0;"</div>
-    <img id="player"style="position:absolute;width:50px;height:50px;left:0;-webkit-transition:all 0.2;"src="spook.jpg">
+    <img id="player"style="position:absolute;width:50px;top:50px;left:0;-webkit-transition:all 0.2;"src="spook.jpg">
     <style>
-    div { position: absolute; background-color: yellow; width: 50px; height: 50px; }
+    div { position: absolute; width: 50px; height: 50px; }
     </style>
     </body>
     <script>
-        var mazaData=[
-        [0,0,0,1,1,1,1,1],
-        [0,0,1,1,0,0,0,1],
-        [1,0,0,0,0,1,1,1],
-        [1,0,1,1,0,1,0,1],
-        [1,0,1,1,0,0,0,1],
-        [1,0,0,0,0,1,0,0],
-        [1,1,1,1,1,1,1,1],
-        ];
-        onkeydown=handlekeys;
-        onready=drawMaze();
-        var px=0,py=1
+        alert ("raak geen zwart aan");
+        var mazeData=[
+        [1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,1],
+        [0,0,0,1,1,0,0,0,0,1,1,0,1,1,0,1,0,1],
+        [1,1,0,0,0,0,1,1,0,0,0,1,1,0,0,1,0,1],
+        [1,1,0,1,1,0,1,0,0,0,0,0,1,0,1,1,0,1],
+        [1,1,0,1,1,0,0,0,1,1,1,0,1,0,1,1,0,1],
+        [1,1,0,0,0,0,1,1,1,0,0,0,1,0,0,1,0,1],
+        [0,0,0,1,1,1,1,1,1,1,1,0,0,1,0,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0,1,1,0,0,0,1,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+        [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1],
+        [1,1,0,0,1,1,0,0,0,0,0,1,1,1,1,1,0,1],
+        [1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+
+    ];
+
+        var winY = 13;
+        var winX = 17;
+
+        var kleurPad = "yellow"
+        var kleurMuur = "black"
+
+        var startX = 0;
+        var startY = 1;
+
+        var sizeY = mazeData.length
+        var sizeX = mazeData[0].length
+        var gewonnen = false;
+        window.onkeydown = handlekeys;
+
+        drawMaze();
+
+        var px=startX,py=startY
         function setleft(id,x){document.getElementById(id).style.left=x+"px"}
         function settop(id,y){document.getElementById(id).style.top=y+"px"}
-        function drawMaze(){
-            for(var y=0;y<7;y++){
-                for(var x=0;x<8;x++){
-            var newob=document.createElement('div');
-            document.getElementById("mazeHolder").appendChild(newob);
-            var divid=math.random();
-            newob.setAttribute('id',divid);
-            setleft(divid,50*X)
-            settop(divid,50*y)
-            if(mazedata[y][x]==0){
-                document.getElementById(divid.style.backgroundcoler="blue")
-                }
+        function drawMaze() {
+            for(var y=0; y < sizeY; y++){
+                for(var x=0; x < sizeX; x++){
+                  var newob = document.createElement('div');
+                  document.getElementById("mazeHolder").appendChild(newob);
+                  var divid = Math.random();
+                  newob.setAttribute('id', divid);
+                  settop(divid,50*y)
+                  setleft(divid,50*x)
+
+                  if (mazeData[y][x] == 0) {
+                      newob.style.backgroundColor = kleurPad;
+                  } else {
+                    newob.style.backgroundColor = kleurMuur;
+                  }
             }
         }
     }
+
+    function verlies() {
+        px = startX;
+        py = startY;
+        alert("Jammer maar helaas")
+    }
+
     function handlekeys(e){
-        if((e.keycode==37)&&mazaData[py][px-1]==0){px--;}
-        if((e.keycode==37)&&mazaData[py][px+1]==0){px--;}
-        if((e.keycode==37)&&mazaData[py-1][px]==0){px--;}
-        if((e.keycode==37)&&mazaData[py+1][px]==0){px--;}
-        setleft("player",px*50);
-        settop("player",py*50);
-        if(px==7 && py==5){alert('goed gedaan!');}
+        console.log(e.code)
+        if(e.code=="ArrowLeft" ) {
+            if ( mazeData[py][px-1]==0) {
+                px--;
+            } else {
+               verlies()
+            }
+        }
+        if(e.code=="ArrowRight") {
+            if (mazeData[py][px+1]==0) {
+                px++;
+            } else {
+                verlies()
+            }
+        }
+        if(e.code=="ArrowUp" ) {
+            if (mazeData[py-1][px]==0){
+            py--;
+            }else {
+                verlies()
+            }
+        }
+        if(e.code=="ArrowDown" ) {
+            if ( mazeData[py+1][px]==0){
+            py++;}else{
+                verlies()
+            }
+        }
+        setleft("player", px*50);
+        settop("player", py*50);
+        if( gewonnen == false && px == winX && py == winY) { 
+            gewonnen = true;
+            window.setTimeout(() => alert('goed gedaan'), 1)
+        }
     }
         </script>
         </html>
