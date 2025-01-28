@@ -26,8 +26,26 @@
         function drawMaze(){
             for(far y=0;<7;y++){
                 for(far x=0;x<8;x++){
-
+            var newob=document.createElement('div');
+            document.getElementById("mazeHolder").appendChild(newob);
+            var divid=math.random();
+            newob.setAttribute('id',divid);
+            setleft(divid,50*X)
+            settop(divid,50*y)
+            if(mazedata[y][x]==0){
+                document.getElementById(divid.style.backgroundcoler="blue")
+                }
             }
         }
     }
+    function handlekeys(e){
+        if((e.keycode==37)&&mazaData[py][px-1]==0){px--;}
+        if((e.keycode==37)&&mazaData[py][px+]==0){px--;}
+        if((e.keycode==37)&&mazaData[py-1][px]==0){px--;}
+        if((e.keycode==37)&&mazaData[py+1][px]==0){px--;}
+        setleft("player",px*50);
+        settop("player",py*50);
+        if(px==7 &&py==5){aler (goed gedaan!);}
+    }
+        </script>
         </html>
