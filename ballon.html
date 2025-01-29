@@ -1,10 +1,38 @@
 <html>
     <body style="background-color: #32cd32">
         <img id="ballon"onmousedown="popped()" style="position: absolute; width:100px;top:500px;left:500px;"src="max.png">
-<p id="scoretekst" style="color: yellow;font-size:20px;font-family: arial;">score:0</p>
+<p id="scoretekst" style="color: rgb(255, 255, 0);font-size:20px;font-family: arial;">score:0</p>
     </body>
     <script>
         var score=0,speed=1
-        function setleft(id,x){document.getElementById(id).st}
+        function setleft(id,x){document.getElementById(id).style.left=x+"px";}
+        function settop(id,y){
+            var element = document.getElementById(id)
+            element.style.top=y+"px";
+        }
+        function getleft(id){return document.getElementById(id).offsetleft;}
+        function gettop(id){return document.getElementById(id).offsetTop;}
+        function randomnumber(low,high){return(Math.floor(low+Math.random()*(1+high-low)));}
+        var gametimer=window.setInterval(floatUp, 25)
+        function floatUp(){ 
+            var y=gettop("ballon");
+            
+            if(y<-100){
+                gameover();
+            }
+            settop("ballon",y-speed);
+        }
+        function popped(){
+            score++;
+            speed++;
+            document.getElementById("scoretekst").innerText="score:"+score;
+            setleft("ballon",randomnumber(0,window.innerWidth-100));
+            settop("ballon",window.innerHeight);
+        }
+        function gameover(){
+            clearInterval(gametimer);
+            alert("game over!jouw totaalscore:"+score);
+            location.reload();
+        }
     </script>
 </html>
